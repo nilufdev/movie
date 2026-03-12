@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CornHub | Movie Streaming Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div id="auth-container" class="auth-overlay">
+        <div class="auth-box">
+            <h2 id="auth-title">Sign In</h2>
+            <form id="auth-form">
+                <input type="email" id="auth-email" placeholder="Email address" required>
+                <input type="password" id="auth-password" placeholder="Password" required>
+                <button type="submit" class="auth-btn" id="auth-submit">Sign In</button>
+            </form>
+            <p class="auth-switch">
+                <span id="auth-switch-text">New to our app?</span>
+                <span id="toggle-auth" class="auth-link">Sign up now</span>.
+            </p>
+            <div id="auth-error" class="hidden"></div>
+        </div>
+    </div>
+
+    <header class="navbar">
+        <div class="nav-left">
+            <div class="logo"><img src="popcorn.png" height="50" /> CornHub </div>
+        </div>
+        <div class="nav-right">
+            <div class="search-container" style="position: relative;">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="search-input" placeholder="Search Movies...">
+                </div>
+                <div id="search-dropdown" class="search-dropdown hidden"></div>
+            </div>
+
+            <button id="header-login-btn" class="login-btn">Login</button>
+            <button id="watchlist-nav-btn" class="subscribe-btn hidden">My Watchlist</button>
+            <button id="logout-btn" class="subscribe-btn hidden">Sign Out</button>
+        </div>
+    </header>
+
+
+    <section id="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="tags" id="hero-tags">
+                <span class="tag">Trending #1</span>
+            </div>
+            <h1 id="hero-title">Loading...</h1>
+            <p id="hero-desc"></p>
+
+            <div class="meta-info">
+                <span id="hero-rating"><i class="fa-solid fa-star" style="color: red;"></i> </span>
+                <span id="hero-year"><i class="fa-regular fa-calendar"></i> </span>
+            </div>
+
+            <div class="hero-buttons">
+                <button class="watch-now-btn"><i class="fa-solid fa-play"></i> Watch Now</button>
+                <button id="hero-play-later" class="play-later-btn"><i class="fa-solid fa-plus"></i> Add to
+                    Watchlist</button>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="explore-section">
+        <div class="explore-header">
+            <h2>Explore by Language</h2>
+        </div>
+        <div class="genre-slider" id="language-container">
+            <button class="genre-pill active" data-lang="en">English</button>
+            <button class="genre-pill" data-lang="ml">Malayalam</button>
+            <button class="genre-pill" data-lang="ta">Tamil</button>
+            <button class="genre-pill" data-lang="hi">Hindi</button>
+        </div>
+    </section>
+
+    <section class="trending-section">
+        <h2>Most Popular TV Shows</h2>
+        <div class="movie-grid" id="movie-grid">
+        </div>
+    </section>
+
+    <div id="movie-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" id="close-modal">&times;</span>
+
+            <div style="display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
+                <img id="modal-image" src="" alt="Movie Poster"
+                    style="width: 150px; border-radius: 8px; object-fit: cover;">
+
+                <div style="flex: 1; min-width: 250px;">
+                    <h2 id="modal-title" style="margin-bottom: 10px; font-size: 32px;">Movie Title</h2>
+
+                    <div id="modal-meta"
+                        style="color: #aaa; font-size: 14px; margin-bottom: 15px; display: flex; gap: 15px; align-items: center;">
+                        <span id="modal-year"></span>
+                        <span id="modal-rating"></span>
+                    </div>
+
+                    <div class="modal-credits" style="margin-bottom: 15px; font-size: 14px; color: #ccc;">
+                        <p id="modal-director"></p>
+                        <p id="modal-cast" style="margin-top: 5px;"></p>
+                    </div>
+
+                    <p id="modal-desc" style="color: #ccc; font-size: 15px; line-height: 1.6;"></p>
+
+                    <p id="modal-desc" style="color: #ccc; font-size: 15px; line-height: 1.6;"></p>
+                </div>
+            </div>
+
+            <div id="trailer-container" style="display: none; margin-top: 20px; width: 100%; aspect-ratio: 16/9;">
+                <iframe id="trailer-iframe" width="100%" height="100%" src="" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen style="border-radius: 8px;"
+                    referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            </div>
+
+            <button id="modal-play-later" class="play-later-btn mt-10"><i class="fa-solid fa-plus"></i> Add to
+                Watchlist</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
